@@ -14,13 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run some tests
+      - name: Run some tests (create results folder)
         run: |
           mkdir results
           echo "This is a test result" > results/output.txt
 
-      - name: Upload results
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: results/
+      - name: Commit results back to repo
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add results/
+          git commit -m "Add results folder from CI run" || echo "No changes to commit"
+          git push
