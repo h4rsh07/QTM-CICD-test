@@ -14,24 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run a simple script
-        run: echo "🎉 GitHub Action is working in QTM-CICD-test!"
-        
-      - name: Check testng-results.xml exists
+      - name: Run some tests
         run: |
-          if [ ! -f "results/Scenario1.xml" ]; then
-            echo "❌ File does not exist!"
-          exit 1
-          fi
-          echo "✅ File found:"
-          ls -lh results/Scenario1.xml
+          mkdir results
+          echo "This is a test result" > results/output.txt
 
-      - name: Upload Junit Results to QMetry
-        run: |
-          echo "Uploading Scenario1.xml..."
-           curl --silent --show-error --write-out "\nStatus: %{http_code}\nResponse:\n%{response_body}" \
-            --location 'https://testmanagement.qmetry.com/rest/import/createandscheduletestresults/1' \
-            --header 'project: AT' \
-            --header 'apikey: pt7itF28wVMONoU6LzEuPmdef1AMzSCuAm7byDGw' \
-            --form entityType=JUNIT \
-            --form file=@results/Scenario1.xml
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: results/
