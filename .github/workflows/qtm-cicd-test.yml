@@ -31,7 +31,7 @@ jobs:
             --header 'project: AT' \
             --header 'apikey: pt7itF28wVMONoU6LzEuPmdef1AMzSCuAm7byDGw' \
             --form entityType=JUNIT \
-            --form 'cycleID="c1"' \
+            --form 'cycleID="c2"' \
             --form 'releaseID="r1"' \
             --form 'projectID="AT"' \
             --form file=@results/Scenario1.xml
