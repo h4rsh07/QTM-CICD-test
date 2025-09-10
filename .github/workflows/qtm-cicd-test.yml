@@ -33,4 +33,5 @@ jobs:
             --form entityType=JUNIT \
             --form 'cycleID="c1"' \
             --form 'releaseID="r1"' \
+            --form 'projectID="AT"' \
             --form file=@results/Scenario1.xml
