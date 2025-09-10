@@ -34,4 +34,5 @@ jobs:
             --form 'cycleID="c1"' \
             --form 'releaseID="r1"' \
             --form 'projectID="AT"' \
+            --form 'testsuiteId="AT-TS-1"' \
             --form file=@results/Scenario1.xml
